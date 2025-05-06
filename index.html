@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>String Analyzer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: rgb(80, 153, 226);
+        border-radius: 5px;
+        border: none;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        margin: 1rem;
+        display: flex;
+        cursor: pointer;
+      }
+      button:hover{
+        background-color: rgb(74, 114, 154);
+        transition: .3s ease-in-out;
+      }
+      input {
+        border-radius: 5px;
+        border: 2px solid gray;
+        margin: 1rem;
+        padding: 1.1rem;
+      }
+      h2 {
+        padding: 1rem;
+        font-size: 2rem;
+        color: rgb(74, 58, 58);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>String Analyzer</h2>
+    <input
+      type="text"
+      id="inputText"
+      placeholder="Enter a sentence"
+      size="50"
+    />
+    <button onclick="analyzeString()">Analyze</button>
+
+    <div id="results" style="margin-top: 20px"></div>
+
+    <script>
+      function analyzeString() {
+        const text = document.getElementById("inputText").value;
+        const cleanedText = text.replace(/\s/g, "");
+        const words = text.trim().split(/\s+/);
+        const reversed = text.split("").reverse().join("");
+        const isPalindrome =
+          text.toLowerCase().replace(/\s/g, "") ===
+          reversed.toLowerCase().replace(/\s/g, "");
+
+        const resultHTML = `
+        <p><strong>Character Count (no spaces):</strong> ${
+          cleanedText.length
+        }</p>
+        <p><strong>Word Count:</strong> ${
+          text.trim() === "" ? 0 : words.length
+        }</p>
+        <p><strong>Reversed:</strong> ${reversed}</p>
+        <p><strong>Palindrome:</strong> ${isPalindrome ? "Yes" : "No"}</p>
+      `;
+
+        document.getElementById("results").innerHTML = resultHTML;
+      }
+    </script>
+  </body>
+</html>
